@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  movie-service:
+    build: ./movie-service
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+  recommendation-service:
+    build: ./recommendation-service
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+
+  python-frontend:
+    build: ./python-frontend
+    ports:
+      - "5002:5002" #port changed to 5002
+    networks:
+      - app-network
+    depends_on:
+      - movie-service
+      - recommendation-service
+
+networks:
+  app-network:
+    driver: bridge

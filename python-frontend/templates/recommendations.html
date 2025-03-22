@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations</title>
+</head>
+<body>
+    <h1>Recommendations</h1>
+    <form action="/recommendations" method="get">
+        <input type="text" name="genre" placeholder="Filter by Genre">
+        <button type="submit">Get Recommendations</button>
+    </form>
+    {% if genre %}
+    <h2>Genre: {{ genre }}</h2>
+    {% endif %}
+    <ul>
+        {% for movie in recommendations %}
+        <li>{{ movie.title }} ({{ movie.genre }})</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Movies</a>
+</body>
+</html>

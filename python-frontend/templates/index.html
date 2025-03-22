@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies</title>
+</head>
+<body>
+    <h1>Movies</h1>
+    <form action="/create" method="post">
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="genre" placeholder="Genre">
+        <button type="submit">Create</button>
+    </form>
+    <ul>
+        {% for movie in movies %}
+        <li>
+            {{ movie.title }} ({{ movie.genre }})
+            <a href="/delete/{{ movie.id }}">Delete</a>
+            <form action="/update/{{ movie.id }}" method="post">
+                <input type="text" name="title" placeholder="New Title">
+                <input type="text" name="genre" placeholder="New Genre">
+                <button type="submit">Update</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/recommendations">Recommendations</a>
+</body>
+</html>
