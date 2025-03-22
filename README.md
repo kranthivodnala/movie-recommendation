@@ -1,4 +1,4 @@
-# Marvel Movie Recommendation Microservices Project
+# Movie Recommendation Microservices Project
 
 This project implements a Marvel-themed movie recommendation system using microservices architecture. It consists of three main components: a movie service, a recommendation service, and a Python Flask-based frontend with Marvel-themed visuals.
 
