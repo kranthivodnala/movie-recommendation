@@ -2,27 +2,42 @@
 <html>
 <head>
     <title>Movies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Movies</h1>
-    <form action="/create" method="post">
-        <input type="text" name="title" placeholder="Title">
-        <input type="text" name="genre" placeholder="Genre">
-        <button type="submit">Create</button>
-    </form>
-    <ul>
-        {% for movie in movies %}
-        <li>
-            {{ movie.title }} ({{ movie.genre }})
-            <a href="/delete/{{ movie.id }}">Delete</a>
-            <form action="/update/{{ movie.id }}" method="post">
-                <input type="text" name="title" placeholder="New Title">
-                <input type="text" name="genre" placeholder="New Genre">
-                <button type="submit">Update</button>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
-    <a href="/recommendations">Recommendations</a>
+    <div class="header">
+        <h1>Marvel Movie Recommendations</h1>
+    </div>
+    <div class="slider">
+        <div class="slide-container">
+            <div class="slide" style="background-image: url('{{ url_for('static', filename='images/marvel1.jpg') }}');"></div>
+            <div class="slide" style="background-image: url('{{ url_for('static', filename='images/marvel2.jpg') }}');"></div>
+            <div class="slide" style="background-image: url('{{ url_for('static', filename='images/marvel3.jpg') }}');"></div>
+        </div>
+    </div>
+    <div class="container">
+        <form action="/create" method="post">
+            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="genre" placeholder="Genre">
+            <button type="submit">Create</button>
+        </form>
+        <ul class="movie-list">
+            {% for movie in movies %}
+            <li class="movie-item">
+                <span>{{ movie.title }} ({{ movie.genre }})</span>
+                <div>
+                    <a href="/delete/{{ movie.id }}"><button>Delete</button></a>
+                    <form action="/update/{{ movie.id }}" method="post">
+                        <input type="text" name="title" placeholder="New Title">
+                        <input type="text" name="genre" placeholder="New Genre">
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="/recommendations"><button>Recommendations</button></a>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

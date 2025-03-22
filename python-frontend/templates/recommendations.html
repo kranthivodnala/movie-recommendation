@@ -2,21 +2,28 @@
 <html>
 <head>
     <title>Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Recommendations</h1>
-    <form action="/recommendations" method="get">
-        <input type="text" name="genre" placeholder="Filter by Genre">
-        <button type="submit">Get Recommendations</button>
-    </form>
-    {% if genre %}
-    <h2>Genre: {{ genre }}</h2>
-    {% endif %}
-    <ul>
-        {% for movie in recommendations %}
-        <li>{{ movie.title }} ({{ movie.genre }})</li>
-        {% endfor %}
-    </ul>
-    <a href="/">Movies</a>
+    <div class="header">
+        <h1>Marvel Movie Recommendations</h1>
+    </div>
+    <div class="container">
+        <form action="/recommendations" method="get">
+            <input type="text" name="genre" placeholder="Filter by Genre">
+            <button type="submit">Get Recommendations</button>
+        </form>
+        {% if genre %}
+        <h2>Genre: {{ genre }}</h2>
+        {% endif %}
+        <ul class="recommendation-list">
+            {% for movie in recommendations %}
+            <li class="recommendation-item">
+                <span>{{ movie.title }} ({{ movie.genre }})</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="/"><button>Movies</button></a>
+    </div>
 </body>
 </html>

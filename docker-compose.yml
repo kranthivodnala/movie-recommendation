@@ -17,7 +17,9 @@ services:
   python-frontend:
     build: ./python-frontend
     ports:
-      - "5002:5002" #port changed to 5002
+      - "5002:5002"
+    volumes:
+      - ./python-frontend/static:/app/static # Added volume mount
     networks:
       - app-network
     depends_on:
